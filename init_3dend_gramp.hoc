@@ -1,0 +1,90 @@
+{load_file("nrngui.hoc")}
+{xopen("FRMot3dendNaHH.hoc")}
+forsec dend {insert Gfluctdv}
+access soma
+insert Gfluctdv
+
+{load_file("SetConductances2.hoc")}
+
+
+tstop=22000
+
+simple2del()
+grampon()
+
+proc batchrun20pool(){local i,ii,trun,gLCa
+trun=startsw()
+for ii = 0,19 {
+sprint(filename,"%s/%s_%d/%s_%d.hoc",$s1,$s1,ii,$s1,ii)
+xopen(filename)
+forsec dend {gLCa=$2*gcabar_L_Ca(0.4)
+gcabar_L_Ca(0.2:0.5) = gLCa:gLCa}
+forall {ar_na3rp=$3 ar_naps=$3}
+apc.record()
+apc.record(spiketimes)
+sprint(filename,"t%s_%d_%.2fgLCa_ar%.1f.txt",$s1,ii,$2,$3)
+spikeout.wopen(filename)
+run()
+spiketimes.printf(spikeout,"%8.4f\n")
+spikeout.close()
+}
+print startsw()-trun, "seconds"
+}
+
+proc batchrun20poolprox(){local i,ii,trun,gLCa
+trun=startsw()
+for ii = 0,19 {
+sprint(filename,"%s/%s_%d/%s_%d.hoc",$s1,$s1,ii,$s1,ii)
+xopen(filename)
+forsec dend {gLCa=$2*gcabar_L_Ca(0.2)
+gcabar_L_Ca(0:0.3) = gLCa:gLCa}
+forall {ar_na3rp=$3 ar_naps=$3}
+apc.record()
+apc.record(spiketimes)
+sprint(filename,"t%s_%d_%.2fgLCa_ar%.1f.txt",$s1,ii,$2,$3)
+spikeout.wopen(filename)
+run()
+spiketimes.printf(spikeout,"%8.4f\n")
+spikeout.close()
+}
+print startsw()-trun, "seconds"
+}
+
+proc batchrun20poolnasi(){local i,ii,trun,gLCa
+trun=startsw()
+for ii = 0,19 {
+sprint(filename,"%s/%s_%d/%s_%d.hoc",$s1,$s1,ii,$s1,ii)
+xopen(filename)
+forsec dend {gLCa=$2*gcabar_L_Ca(0.4)
+gcabar_L_Ca(0.2:0.5) = gLCa:gLCa}
+forall {ar_na3rp=$3 ar_napsi=$3}
+apc.record()
+apc.record(spiketimes)
+sprint(filename,"t%s_%d_%.2fgLCa_ar%.1f.txt",$s1,ii,$2,$3)
+spikeout.wopen(filename)
+run()
+spiketimes.printf(spikeout,"%8.4f\n")
+spikeout.close()
+}
+print startsw()-trun, "seconds"
+}
+
+proc batchrun20poolLCainact(){local i,ii,trun,gLCa
+trun=startsw()
+for ii = 0,19 {
+sprint(filename,"%s/%s_%d/%s_%d.hoc",$s1,$s1,ii,$s1,ii)
+xopen(filename)
+forsec dend {gLCa=$2*gcabar_L_Ca_inact(0.4)
+gcabar_L_Ca_inact(0.2:0.5) = gLCa:gLCa}
+forall {ar_na3rp=$3 ar_naps=$3}
+apc.record()
+apc.record(spiketimes)
+sprint(filename,"t%s_%d_%.2fgLCa_ar%.1f.txt",$s1,ii,$2,$3)
+spikeout.wopen(filename)
+run()
+spiketimes.printf(spikeout,"%8.4f\n")
+spikeout.close()
+}
+print startsw()-trun, "seconds"
+}
+
