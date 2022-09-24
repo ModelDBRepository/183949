@@ -97,3 +97,10 @@ L_Ca_inact. Then run batchrun20poolLCainact.
 20160129 A bug introduced by Tom Morse's conversion of a perl script
 to pars2manyhocs.py was noted by Randy Powers and fixed.  The new
 version required updating csv files to remove last line comments.
+
+Changelog
+=========
+
+* 20220924: Update MOD files to avoid declaring variables and functions with the same name.
+  See https://github.com/neuronsimulator/nrn/pull/1992
+
